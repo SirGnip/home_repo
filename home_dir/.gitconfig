@@ -1,0 +1,22 @@
+[user]
+    name = 
+    email = 
+[core]
+    autocrlf = true
+	fscache = true
+[alias]
+    lg = log --oneline --decorate --color=auto --graph --all
+    lg2 = log --graph --pretty='%h %ad %cn %d %s' --date=short --all --author-date-order
+    st = status
+    difft = difftool -y
+    diffdir = difftool --dir-diff
+[push]
+    # By default, tags aren't pushed. This setting pushes reachable, annotated tags: http://stackoverflow.com/a/26438076
+    followTags = true
+[http]
+    sslVerify = false
+[diff]
+    tool = meld
+[difftool "meld"]
+    path = C:/Program Files (x86)/Meld/meld.exe
+

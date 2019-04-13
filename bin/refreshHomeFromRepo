@@ -1,0 +1,18 @@
+#!/usr/bin/bash
+set -ue
+
+# copy files from home_dir to actual home dir
+FULL_SCRIPT_PATH=$(readlink -fn $BASH_SOURCE)
+BIN_DIR=$(dirname $FULL_SCRIPT_PATH)
+HOME_CONF_DIR=$(realpath $BIN_DIR/../home_dir)
+cd $HOME_CONF_DIR
+TRG=../..
+
+echo Copying files from $HOME_CONF_DIR to $(realpath $TRG)
+set -x
+cp $(ls -A) $TRG
+set +x
+
+# Make empty bin/ dirctory in home directory
+cd ../..
+mkdir -p bin
