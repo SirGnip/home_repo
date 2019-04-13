@@ -9,10 +9,10 @@ This contains the config and the scripts for my Git Bash shell.
 - cd into repo directory
 - run `home_repo/bin/refreshHomeFromRepo`
 - `vi '/c/Program Files/Git/etc/profile'` and add these two lines to the top of the file
-
+```
     HOME=/c/_other/gitbashHome
     cd ~
-
+```
 - exit shell
 - launch shell
 
