@@ -2,8 +2,8 @@
 # source file at ~/home_repo/home_dir and run bin/refreshHomeFromRepo to update.
 
 [user]
-    name = 
-    email = 
+    name = SirGnip
+    email = SirGnip@users.noreply.github.com
 [core]
     autocrlf = true
 	fscache = true
