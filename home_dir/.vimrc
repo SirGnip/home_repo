@@ -1,3 +1,6 @@
+" WARNING: Do NOT edit this config file in ~/. Make sure you are editing the
+" source file at ~/home_repo/home_dir and run bin/refreshHomeFromRepo to update.
+
 set background=dark
 
 "Make searches case-sensitive only if they contain upper-case characters
