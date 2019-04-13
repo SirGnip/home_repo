@@ -1,5 +1,3 @@
-This contains the config and the scripts for my Git Bash shell.
-
 # Setup Instructions
 
 - launch Git Bash shell
