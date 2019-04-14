@@ -4,15 +4,15 @@
 - mkdir the directory that will be your new home directory
 - cd into directory
 - git clone this repo
-- cd into repo directory
-- run `home_repo/bin/refreshHomeFromRepo`
-- `vi '/c/Program Files/Git/etc/profile'` and add these two lines to the top of the file
+- `cd home_repo`
+- run `bin/refreshHomeFromRepo`
+- `vi '/c/Program Files/Git/etc/profile'` or `vi /c/Users/USER/AppData/Local/Programs/Git/etc/profile` and add these two lines to the top of the file
 ```
-    HOME=/c/_other/gitbashHome
+    HOME=/c/wrk/gitbashHome
     cd ~
 ```
-- exit shell
-- launch shell
+- exit Git Bash shell
+- launch Git Bash shell
 
 
 # Directory layout
