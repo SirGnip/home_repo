@@ -1,0 +1,14 @@
+#!/bin/bash
+# Run the given command line in each subdirectory under the current working directory
+# Usage: massShell pwd
+
+for ddd in $(ls -d */)
+do
+    echo
+    cd $ddd
+    echo ========== $(pwd)
+    $@
+    cd ..
+done
+
+

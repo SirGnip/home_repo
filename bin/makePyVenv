@@ -1,0 +1,27 @@
+#!/bin/bash
+set -ue
+
+# Usage:
+#   makePyVenv <trgdir> <pyVer 2|3> [<requ1.txt>...]
+# Example:
+#   makePyVenv 3 myenv requ.txt requ2.txt requ3.txt
+TRGDIR=$1
+PYVER=$2
+shift 2
+
+# create new venv
+py -$PYVER -m venv $TRGDIR
+which pip
+
+# make new venv active
+source $TRGDIR/Scripts/activate
+which pip
+pip list
+
+# install all requirements from given files
+for var in "$@"
+do
+    echo
+    echo Installing requirements from $1
+    pip install -r $1
+done
