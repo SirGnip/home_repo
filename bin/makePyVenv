@@ -1,16 +1,24 @@
 #!/bin/bash
 set -ue
 
-# Usage:
-#   makePyVenv <trgdir> <pyVer 2|3> [<requ1.txt>...]
-# Example:
-#   makePyVenv 3 myenv requ.txt requ2.txt requ3.txt
+if [ $# != 2 -a $# != 3 ]; then
+    echo Usage:
+    echo "    makePyVenv <trgdir> <pyVer 2|3> [<requ1.txt>...]"
+    echo Example:
+    echo "    makePyVenv myenv 3 requ.txt requ2.txt requ3.txt"
+    exit 1
+fi
+
 TRGDIR=$1
 PYVER=$2
 shift 2
 
 # create new venv
-py -$PYVER -m venv $TRGDIR
+if [ $PYVER = 2 ]; then
+    py -$PYVER -m virtualenv $TRGDIR
+else
+    py -$PYVER -m venv $TRGDIR
+fi
 which pip
 
 # make new venv active
