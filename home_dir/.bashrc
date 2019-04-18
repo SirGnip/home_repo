@@ -4,6 +4,9 @@
 alias ll='ls -l'
 alias ls='ls -F --color=auto --show-control-chars'
 
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+
 export PATH="$PATH:~/bin:~/home_repo/bin"
 export PATH="$PATH:/c/Program Files (x86)/Meld"
 
