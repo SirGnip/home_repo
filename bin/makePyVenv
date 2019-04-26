@@ -1,7 +1,9 @@
 #!/bin/bash
 set -ue
 
-if [ $# != 2 -a $# != 3 ]; then
+if [ $# -lt 2 ]; then
+    echo "ERROR: makePyVenv requires at least two arguments"
+    echo
     echo Usage:
     echo "    makePyVenv <trgdir> <pyVer 2|3> [<requ1.txt>...]"
     echo Example:
@@ -30,6 +32,6 @@ pip list
 for var in "$@"
 do
     echo
-    echo Installing requirements from $1
-    pip install -r $1
+    echo ===== Installing requirements from $var
+    pip install -r $var
 done
