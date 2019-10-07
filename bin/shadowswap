@@ -1,0 +1,5 @@
+#!/bin/bash
+set -x
+mv $1.shadow $1.shadow.tmp_for_swap
+mv $1 $1.shadow
+mv $1.shadow.tmp_for_swap $1

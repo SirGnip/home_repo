@@ -1,0 +1,3 @@
+#!/bin/bah
+set -x
+rm $1.shadow
