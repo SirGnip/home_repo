@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# Usage: myrunner FILE commands arg1 arg2 arg3
+# when myrunner sees FILE change, it runs the command and args from the command line.
+# Also, FILE can be a path to a directory, and that means an entire directory of files
+# will be watched for changes.
+
+# Ex:
+#   When myrunner sees dostuff.py change, it runs "dostuff.py abc 123"
+#   > myrunner dostuff.py dostuff.py abc 123
+
+DELAY=1
+
+watch_file_or_dir=$1
+shift
+
+orig=dummy
+while true; do
+    # exclude .pyc because if a .py file is changed that happens to be imported as a module,
+    # myrunner sees a file change and causes the script to be run. When run, Python imports
+    # the module and this causes a .pyc to be regenerated, meaning its stat changes causing
+    # myrunner to catch another change, meaning each time a Python module is edited, it will
+    # result in myrunner running its script twice.
+    #
+    # Exclude .swp so that simply opening a file for edit in "vi" will not cause a change.
+    #
+    # Note: doing an "ls" on $watch_file_or_dir converts either a directory or individual
+    # file to a list of files. Because of the wildcard, the files have absolute paths.
+    #
+    # find args: -mindepth 1 to avoid including the top level directory in the list of files
+    #            -type f to include only files, not directories in the list of things to stat
+    files_to_watch=$(find $watch_file_or_dir -mindepth 1 -type f | egrep -v '.pyc|.swp')
+    # stat format %y - last modification time (change file contents)
+    # stat format %z = last change time (file metadata, such as permissions)
+
+    cur=$(stat --format="%y %z" $files_to_watch)
+    if [[ $cur != $orig ]]; then
+        echo '=====' $(date +%H:%M:%S) '========================================'
+        $*
+        echo '- - -' $(date +%H:%M:%S) '- - - - - - - - - - - - - - - - - - - - '
+        echo
+        orig=$cur
+        echo $orig
+    fi
+    sleep $DELAY
+done
+
