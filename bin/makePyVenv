@@ -8,6 +8,9 @@ if [ $# -lt 2 ]; then
     echo "    makePyVenv <trgdir> <pyVer 2|3> [<requ1.txt>...]"
     echo Example:
     echo "    makePyVenv myenv 3 requ.txt requ2.txt requ3.txt"
+    echo
+    echo "Note: If you 'source' this script as opposed to directly"
+    echo "running it, the venv will be activated in your environment."
     exit 1
 fi
 
