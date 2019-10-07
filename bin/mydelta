@@ -1,0 +1,32 @@
+#!/bin/bash
+  
+# Usage: mydelta [bash command]
+# The "mydelta" script is a wrapper around any arbitrary bash command. Each time
+# you run a bash command via "mydelta", the command will be run and you will be
+# shown a diff of the previous "mydelta" run and the current "mydelta" run.
+
+# Example:
+# $ mydelta ifconfig
+# $ mydelta ls -la
+
+DELTA_PATH=/tmp/mydelta
+NEW_FILE=$DELTA_PATH/mydelta_new.txt
+OLD_FILE=$DELTA_PATH/mydelta_old.txt
+#DIFF_CMD='mydiff'
+#DIFF_CMD='diffuse'
+#DIFF_CMD='diff -y'
+DIFF_CMD='meld'
+
+mkdir -p $DELTA_PATH # setup for first run
+
+if [ -w $NEW_FILE ]; then
+    mv $NEW_FILE $OLD_FILE
+fi
+
+$@ > $NEW_FILE
+
+if [ -w $OLD_FILE ]; then
+    $DIFF_CMD $OLD_FILE $NEW_FILE
+else
+    echo This is the first run of $0. No results to diff against.
+fi
