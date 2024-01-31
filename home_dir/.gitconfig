@@ -8,8 +8,10 @@
     autocrlf = true
 	fscache = true
 [alias]
+    l = log --oneline --decorate --color=auto --graph --all -n 20
     lg = log --oneline --decorate --color=auto --graph --all
     lg2 = log --graph --pretty='%h %ad %cn %d %s' --date=short --all --author-date-order
+    s = status
     st = status
     difft = difftool -y
     diffdir = difftool --dir-diff
