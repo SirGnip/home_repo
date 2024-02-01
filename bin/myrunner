@@ -9,7 +9,7 @@
 #   When myrunner sees dostuff.py change, it runs "dostuff.py abc 123"
 #   > myrunner dostuff.py dostuff.py abc 123
 
-DELAY=1
+DELAY=2
 
 watch_file_or_dir=$1
 shift
@@ -29,7 +29,7 @@ while true; do
     #
     # find args: -mindepth 1 to avoid including the top level directory in the list of files
     #            -type f to include only files, not directories in the list of things to stat
-    files_to_watch=$(find $watch_file_or_dir -mindepth 1 -type f | egrep -v '.pyc|.swp')
+    files_to_watch=$(find $watch_file_or_dir -mindepth 1 -type f | egrep -v '.pyc|.swp' | grep -v ' ')
     # stat format %y - last modification time (change file contents)
     # stat format %z = last change time (file metadata, such as permissions)
 
@@ -40,7 +40,6 @@ while true; do
         echo '- - -' $(date +%H:%M:%S) '- - - - - - - - - - - - - - - - - - - - '
         echo
         orig=$cur
-        echo $orig
     fi
     sleep $DELAY
 done
